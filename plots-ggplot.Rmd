@@ -67,4 +67,3 @@ gg_np +
   
 ggsave(here("figures", "np_graph.jpg"), dpi = 180, width = 8, height = 7)
 ```
-
