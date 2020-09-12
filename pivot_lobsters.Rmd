@@ -38,4 +38,5 @@ ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site))
 ggsave(here('figures', 'lobsters-line.png'))
 ```
 
-There are `r nrow(lobsters)` total lobsters included in this report
+There are `r count(lobsters)` total lobsters included in this report
+
