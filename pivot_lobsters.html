@@ -788,6 +788,31 @@ ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site))
 <pre class="r"><code>#saving site_year_summary graph
 ggsave(here(&#39;figures&#39;, &#39;lobsters-line.png&#39;))</code></pre>
 <pre><code>## Saving 7 x 5 in image</code></pre>
+<pre class="r"><code>#practice with mutate() function
+
+lobsters_detailed &lt;- lobsters %&gt;%
+  mutate(size_m = size_mm / 1000,
+         millenia = 2000,
+         observer = &quot;Allison Horst&quot;)
+
+#practice with select() function
+
+lobsters_detailed %&gt;%
+  select(date, site, size_m)</code></pre>
+<pre><code>## # A tibble: 6,366 x 3
+##    date    site  size_m
+##    &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;
+##  1 8/20/12 ivee   0.07 
+##  2 8/20/12 ivee   0.06 
+##  3 8/20/12 ivee   0.065
+##  4 8/20/12 ivee   0.07 
+##  5 8/20/12 ivee   0.085
+##  6 8/20/12 ivee   0.06 
+##  7 8/20/12 ivee   0.065
+##  8 8/20/12 ivee   0.067
+##  9 8/20/12 ivee   0.07 
+## 10 8/20/12 ivee   0.085
+## # ... with 6,356 more rows</code></pre>
 <p>There are 6366 total lobsters included in this report</p>
 
 
