@@ -1,0 +1,26 @@
+---
+title: "my_tidying.Rmd"
+author: "Evan Roybal"
+date: "12/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Load Packages
+```{r}
+library('tidyverse')
+library('here')
+#don't forget to uncomment install.packages('janitor') if you currently don't have it installed
+#install.packages('janitor')
+library('janitor')
+library('readxl')
+```
+
+#read in data
+```{r}
+inverts <- read_excel(here("data", "inverts.xlsx"))
+```
+
