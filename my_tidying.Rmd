@@ -43,3 +43,48 @@ inverts_wide <- inverts_long %>%
               values_from = sp_count)
 ```
 
+#use clean_names() function from janitor package
+```{r}
+inverts_wide <- inverts_wide %>%
+  clean_names()
+```
+
+#use unite() function from tidyr package
+```{r}
+inverts_unite <- inverts_long %>%
+  unite(col = "site_year",
+        c(site, year),
+        sep = "_")
+```
+
+#practice with unite() function
+```{r}
+inverts_moyr <- inverts_long %>%
+  unite(col = "mo_yr",
+        c(month, year),
+        sep = "/")
+
+#unite() function can also merge info from more than 2 columns
+inverts_triple_unite <- inverts_long %>%
+  unite(col = "year_site_name",
+        c(year, site, common_name),
+        sep = "-")
+```
+
+#use separate() function from tidyr package
+```{r}
+inverts_sep <- inverts_unite %>%
+  separate(site_year, into = c("my_site", "my_year"))
+```
+
+#use str_replace() function from stringr to replace specific strings with other strings
+```{r}
+ca_abbr <- inverts %>%
+  mutate(
+    common_name =
+      str_replace(common_name,
+                  pattern = "california",
+                  replacement = "CA")
+  )
+```
+
