@@ -1,0 +1,52 @@
+---
+title: "filter_join"
+author: "Evan Roybal"
+date: "12/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#install and load packages
+```{r}
+library(tidyverse)
+library(readxl)
+library(here)
+library(kableExtra)
+```
+
+#read in data files
+```{r}
+fish <- read_csv(here("data", "fish.csv"))
+kelp_abur <- read_excel(here("data", "kelp.xlsx"), sheet = "abur")
+```
+
+#practice with the filter() function from dplyr
+```{r}
+fish_garibaldi <- fish %>%
+  filter(common_name == "garibaldi")
+
+#attempt to do it on my own
+fish_mohk <- fish %>%
+  filter(site == "mohk")
+
+#using inequality signs with filter() function
+fish_over50 <- fish %>%
+  filter(total_count >= 50)
+
+#using OR operation with filter() function to keep more than one observation
+fish_3sp <- fish %>%
+  filter(common_name == "garibaldi" |
+           common_name == "blacksmith" |
+           common_name == "black surfpench")
+#using %in% operation with filter() function to select multiple matches in the same variable
+fish_3p_2 <- fish %>%
+  filter(common_name %in% c("garibaldi", "blacksmith", "black surfpench"))
+
+#practice
+fish_gar_2016 <- fish %>%
+  filter(year == 2016 | common_name == "garibaldi")
+```
+
