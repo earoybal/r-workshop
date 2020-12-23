@@ -48,5 +48,25 @@ fish_3p_2 <- fish %>%
 #practice
 fish_gar_2016 <- fish %>%
   filter(year == 2016 | common_name == "garibaldi")
+
+#using the AND operator
+aque_2018 <- fish %>%
+  filter(year == 2018, site == "aque")
+
+#practice
+low_gb_wr <- fish %>%
+  filter(common_name %in% c("garibaldi", "rock wrasse"), total_count <= 10)
+
+#using str_detect() function from the stringr package to keep observations that match a specified pattern
+fish_bl <- fish %>%
+  filter(str_detect(common_name, pattern = "black"))
+
+#practice with str_detect()
+fish_it <- fish %>%
+  filter(str_detect(common_name, pattern = "it"))
+
+#can add negate = TRUE into str_detect() to exclude observations with a specific string pattern
+fish_negate <- fish %>%
+  filter(str_detect(common_name, pattern = "it", negate = TRUE))
 ```
 
