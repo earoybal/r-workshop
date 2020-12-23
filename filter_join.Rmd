@@ -70,3 +70,13 @@ fish_negate <- fish %>%
   filter(str_detect(common_name, pattern = "it", negate = TRUE))
 ```
 
+#using dplyr::*join() functions to merge data frames
+```{r}
+#fixing kelp_abur dataset to be able to merge with fish dataset correctly
+#kelp_abur <- kelp_abur %>%
+  mutate(year = year + 2000)
+#using full_join() to combine fish and kelp_abur data frames with all data being preserved
+abur_kelp_fish <- kelp_abur %>%
+  full_join(fish, by = c("year", "site"))
+```
+
