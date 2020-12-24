@@ -74,9 +74,34 @@ fish_negate <- fish %>%
 ```{r}
 #fixing kelp_abur dataset to be able to merge with fish dataset correctly
 #kelp_abur <- kelp_abur %>%
-  mutate(year = year + 2000)
+  #mutate(year = year - 2000)
 #using full_join() to combine fish and kelp_abur data frames with all data being preserved
 abur_kelp_fish <- kelp_abur %>%
   full_join(fish, by = c("year", "site"))
+
+#practice with left_join()
+kelp_fish_left <- kelp_abur %>%
+  left_join(fish, by = c("year", "site"))
+
+#inner_join()
+kelp_fish_injoin <- kelp_abur %>%
+  inner_join(fish, by = c("year", "site"))
+
+#combining filter() and join()
+my_fish_join <- fish %>%
+  filter(year == 2017, site == "abur") %>%
+  left_join(kelp_abur, by = c("year", "site")) %>%
+  mutate(fish_per_kelp_fronds = total_count / total_fronds)
+```
+
+#using knitr:kable() and functions in the kableExtra package
+```{r}
+#kable(my_fish_join)
+
+#using kableExtra functions to spruce up tables in the knitted document
+my_fish_join %>%
+  kable() %>%
+  kable_styling(bootstrap_options = "striped",
+                full_width = FALSE)
 ```
 
